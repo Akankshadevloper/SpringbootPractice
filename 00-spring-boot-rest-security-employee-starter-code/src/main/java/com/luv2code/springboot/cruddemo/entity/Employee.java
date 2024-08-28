@@ -13,23 +13,22 @@ public class Employee {
     private int id;
 
     @Column(name="first_name")
-    private String firstName;
+    private String firstname;  // Changed to match entity field
 
     @Column(name="last_name")
-    private String lastName;
+    private String lastname;   // Changed to match entity field
 
     @Column(name="email")
     private String email;
-
 
     // define constructors
     public Employee() {
 
     }
 
-    public Employee(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Employee(String firstname, String lastname, String email) { // Updated parameter names
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
     }
 
@@ -43,20 +42,20 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -72,17 +71,9 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
 }
-
-
-
-
-
-
-
-
