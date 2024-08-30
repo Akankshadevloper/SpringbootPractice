@@ -38,6 +38,15 @@
           class="error"></span>
 
     <br><br>
+
+    Postal Code :  <input type="text" th:field="*{postalCode}"/>
+
+    <span th:if="${#fields.hasErrors('postalCode')}"
+          th:errors="*{postalCode}"
+          class="error"></span>
+
+    <br><br>
+
     <input type="submit" value="submit"/>
 
 </form>

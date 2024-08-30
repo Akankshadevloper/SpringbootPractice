@@ -1,9 +1,6 @@
 package com.akanksha.springdemo.mvc;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Customer {
 
@@ -14,15 +11,27 @@ public class Customer {
     private String lastName = " ";
 
 
+    @NotNull(message = "is required")
     @Min(value = 0, message = "must be grater than or equal to zero")
     @Max(value = 10, message = "must be grater than or equal to 10")
-    private int freePasses;
+    private Integer freePasses;
 
-    public int getFreePasses() {
+    @Pattern(regexp = "^[a-zA-Z0-9]{5}" ,message = "only 5 chars/digits")
+    private String postalCode;
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public Integer getFreePasses() {
         return freePasses;
     }
 
-    public void setFreePasses(int freePasses) {
+    public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
     }
 
