@@ -1,7 +1,7 @@
-package com.luv2code.springboot.cruddemo.rest;
+package com.luv2code.springboot.thymeleafdemo.rest;
 
-import com.luv2code.springboot.cruddemo.entity.Employee;
-import com.luv2code.springboot.cruddemo.service.EmployeeService;
+import com.luv2code.springboot.thymeleafdemo.entity.Employee;
+import com.luv2code.springboot.thymeleafdemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
