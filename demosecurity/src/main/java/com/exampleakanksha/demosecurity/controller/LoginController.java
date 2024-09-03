@@ -11,4 +11,12 @@ public class LoginController {
 //        return "plain-login";  // Ensure this matches the file name
         return "fancy-login";
     }
+
+    //add request mapping for ./access-denied
+
+    @GetMapping("/access-denied")
+    public String showingAccessDenied() {
+//        return "plain-login";  // Ensure this matches the file name
+        return "access-denied";
+    }
 }

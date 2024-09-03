@@ -13,7 +13,6 @@ public class DemoSecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
-
         UserDetails john = User.builder()
                 .username("john")
                 .password("{noop}test123")
@@ -39,6 +38,9 @@ public class DemoSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+                                .requestMatchers("/").hasRole("EMPLOYEE")
+                                .requestMatchers("/leaders/**").hasRole("MANAGER")
+                                .requestMatchers("/systems/**").hasRole("ADMIN")  // Correct URL to match your mapping and Thymeleaf link
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -47,9 +49,11 @@ public class DemoSecurityConfig {
                                 .loginProcessingUrl("/authenticateTheUser")  // URL to submit the username and password
                                 .permitAll()
                 )
-                .logout(logout ->
-                        logout.permitAll()
-                ); // Optional: allows access to logout
+                .logout(logout -> logout.permitAll()
+                )
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage( "/access-denied")
+                );                        ;
 
         return http.build();
     }

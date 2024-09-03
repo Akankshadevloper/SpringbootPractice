@@ -1,22 +1,34 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>loveToCode Company Home Page </title>
+    <title>LoveToCode Company Home Page</title>
 </head>
 <body>
-<h2>Company Hone Page  - Yooho!!!! </h2>
+<h2>Company Home Page - Yooho!!!!</h2>
 <hr>
+<p>Welcome to the Akanksha company home page!</p>
+<hr>
+<!-- Display username and roles -->
 <p>
-    welcome to the akanksha company home page !
+    User: <span sec:authentication="principal.username"></span>
+    <br><br>
+    Role(s): <span sec:authentication="principal.authorities"></span>
 </p>
-  <!-- Add a logout button  -->
-<form action="#" th:action="@{/logout}" method="POST">
-
-    <input type="submit" value="Logout" />
-
+<hr>
+<!-- Link to /leaders for the manager -->
+<p>
+    <a th:href="@{/leaders}">Leadership Meeting</a> (only for Manager peeps)
+</p>
+<hr>
+<!-- Link to /systems for admins -->
+<p>
+    <a th:href="@{/systems}">IT Systems Meeting</a> (only for admin peeps)
+</p>
+<hr>
+<!-- Logout button -->
+<form th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
 </form>
-
-
 </body>
 </html>
