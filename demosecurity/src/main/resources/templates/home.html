@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>loveToCode Company Home Page </title>
@@ -7,6 +7,16 @@
 <body>
 <h2>Company Hone Page  - Yooho!!!! </h2>
 <hr>
-   Welcome to the akanksha company loveTooCode page !
+<p>
+    welcome to the akanksha company home page !
+</p>
+  <!-- Add a logout button  -->
+<form action="#" th:action="@{/logout}" method="POST">
+
+    <input type="submit" value="Logout" />
+
+</form>
+
+
 </body>
 </html>

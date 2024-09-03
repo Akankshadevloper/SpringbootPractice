@@ -1,6 +1,5 @@
 package com.exampleakanksha.demosecurity.security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,31 +23,33 @@ public class DemoSecurityConfig {
         UserDetails mary = User.builder()
                 .username("mary")
                 .password("{noop}test123")
-                .roles("EMPLOYEE","MANAGER")
+                .roles("EMPLOYEE", "MANAGER")
                 .build();
 
         UserDetails susan = User.builder()
                 .username("susan")
                 .password("{noop}test123")
-                .roles("EMPLOYEE", "MANAGER","ADMIN")
+                .roles("EMPLOYEE", "MANAGER", "ADMIN")
                 .build();
-
 
         return new InMemoryUserDetailsManager(john, mary, susan);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(configurer ->
-                configurer
-                        .anyRequest().authenticated()
-        )
-                .formLogin(form->
-                        form
-                                .loginPage("/showMyLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
+        http.authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .anyRequest().authenticated()
+                )
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/showMyLoginPage")  // Custom login page URL
+                                .loginProcessingUrl("/authenticateTheUser")  // URL to submit the username and password
                                 .permitAll()
-                );
+                )
+                .logout(logout ->
+                        logout.permitAll()
+                ); // Optional: allows access to logout
 
         return http.build();
     }
