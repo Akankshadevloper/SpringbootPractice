@@ -22,8 +22,38 @@ public class CruddemoApplication {
 
 //			findInstructor(appDAO);
 
-			deleteInstructor(appDAO);
+//			deleteInstructor(appDAO);
+
+
+//			findInstructorDetail(appDAO);
+
+			deleteInstructorDetail(appDAO);
 		};
+	}
+
+	private void deleteInstructorDetail(AppDAO appDAO) {
+
+		int theId = 1;
+		System.out.println("Deleting instructor detail id: " + theId);
+
+		appDAO.deleteInsInstructorById(theId);
+		System.out.println("Done!");
+
+	}
+
+	private void findInstructorDetail(AppDAO appDAO) {
+
+		//get the instructor detail object
+		int theId = 1;
+		InstructorDetail tempInstructorDetail = appDAO.findInstructorDetailById(theId);
+
+		//print the instructor detail
+		System.out.println("tempInstructorDetail = " + tempInstructorDetail);
+
+		//print the associate instructor
+		System.out.println("the associate instructor :  " + tempInstructorDetail.getInstructor());
+
+		System.out.println("Done!!");
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
@@ -61,12 +91,12 @@ public class CruddemoApplication {
 */
 
 		// Create the instructor
-		Instructor tempInstructor = new Instructor("Madhu", "Patel", "madhupatel@gmail.com");
+		Instructor tempInstructor = new Instructor("Bibek", "Behera", "ak@gmail.com");
 
 		// Create the instructor detail
 		InstructorDetail tempInstructorDetail = new InstructorDetail(
 				"http://www.luv2codemadhu.com/youtube",
-				"Guitar!!");
+				"Doing Sketch");
 
 
 		// Associate the objects correctly
