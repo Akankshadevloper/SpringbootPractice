@@ -20,8 +20,23 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner  -> {
 
-			createCourseAndStudent(appDAO);
+//			createCourseAndStudent(appDAO);
+
+			findCourseAndStudent(appDAO);
+
+
 		};
+	}
+
+	private void findCourseAndStudent(AppDAO appDAO) {
+
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndStudentsByCourseId(theId);
+
+		System.out.println("Loaded course : " + tempCourse);
+		System.out.println("Students : " + tempCourse.getStudents());
+
+		System.out.println("Done!");
 	}
 
 	private void createCourseAndStudent(AppDAO appDAO) {
