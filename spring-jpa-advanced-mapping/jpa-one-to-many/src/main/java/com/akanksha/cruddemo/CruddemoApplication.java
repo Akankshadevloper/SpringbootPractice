@@ -1,6 +1,7 @@
 package com.akanksha.cruddemo;
 
 import com.akanksha.cruddemo.dao.AppDAO;
+import com.akanksha.cruddemo.entity.Course;
 import com.akanksha.cruddemo.entity.Instructor;
 import com.akanksha.cruddemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -27,8 +28,59 @@ public class CruddemoApplication {
 
 //			findInstructorDetail(appDAO);
 
-			deleteInstructorDetail(appDAO);
+//			deleteInstructorDetail(appDAO);
+
+//			createInstructorWithCourses(appDAO);
+
+			findInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+
+		int theId = 1;
+		System.out.println("Find Instructor id : " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor : " + tempInstructor);
+		System.out.println("the associated courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done!!");
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+
+		// Create the instructor
+		Instructor tempInstructor = new Instructor("Bibek", "Behera", "Bibekbk@gmail.com");
+
+		// Create the instructor detail
+		InstructorDetail tempInstructorDetail = new InstructorDetail(
+				"http://www.youtube.com",
+				"Playing Basketball");
+
+
+		// Associate the objects correctly
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		//create some courses
+		Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide ");
+		Course tempCourse2 = new Course("The Pinball MasterClass ");
+
+		//add courses to instructor
+		tempInstructor.add(tempCourse1);
+		tempInstructor.add(tempCourse2);
+
+		//save the instructor
+
+		//Note this will also save the courses
+		//because the CascadeType.PERSIST
+		System.out.println("Saving Instructor" + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+		appDAO.save(tempInstructor);
+
+		System.out.println("Done !!!!");
+
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {

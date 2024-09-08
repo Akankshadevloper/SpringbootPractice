@@ -3,6 +3,9 @@ package com.akanksha.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "instructor")
 public class Instructor {
@@ -42,6 +45,13 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="instructor_detail_id")
     private InstructorDetail instructorDetail;
+
+
+    @OneToMany(mappedBy = "instructor",
+                fetch = FetchType.EAGER,
+                cascade = {CascadeType.DETACH , CascadeType.MERGE,
+                           CascadeType.REFRESH , CascadeType.PERSIST})
+    private List<Course> courses;
 
 
     public Instructor() {
@@ -104,5 +114,25 @@ public class Instructor {
                 ", email='" + email + '\'' +
                 ", instructorDetail=" + instructorDetail +
                 '}';
+    }
+
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    //add convenience methods for bi-directional relationship
+
+    public void add(Course tempCourse) {
+
+        if(courses == null){
+            courses = new ArrayList<>();
+        }
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
     }
 }
