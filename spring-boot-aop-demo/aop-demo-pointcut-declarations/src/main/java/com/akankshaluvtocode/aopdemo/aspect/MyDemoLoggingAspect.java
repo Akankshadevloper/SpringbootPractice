@@ -22,5 +22,5 @@ public class MyDemoLoggingAspect {
     @Before("forDaoPackage()")
     public void performApiAnalytics() {
         System.out.println("\n=====>>> Performing api analytics ");
-  
+    }
 }
