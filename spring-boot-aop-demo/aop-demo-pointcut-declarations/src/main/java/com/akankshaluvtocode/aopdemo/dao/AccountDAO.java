@@ -2,8 +2,12 @@ package com.akankshaluvtocode.aopdemo.dao;
 
 import com.akankshaluvtocode.aopdemo.Account;
 
+import java.util.List;
+
 public interface AccountDAO {
 
+    //add a new method: findAccounts()
+    List<Account> findAccounts();
 
     void addAccount(Account theAccount , boolean vipFlag);
 
@@ -16,5 +20,6 @@ public interface AccountDAO {
     public String getServiceCode();
 
     public void setServiceCode(String serviceCode);
+
 
 }
